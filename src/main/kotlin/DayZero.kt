@@ -9,9 +9,9 @@ abstract class DayZero(inputFileName: String) {
         @Suppress("LeakingThis")
         preprocess()
         @Suppress("LeakingThis")
-        task2()
-        @Suppress("LeakingThis")
         task1()
+        @Suppress("LeakingThis")
+        task2()
     }
 
     protected open fun preprocess() {}
