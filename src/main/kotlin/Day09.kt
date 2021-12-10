@@ -36,11 +36,11 @@ class Day09(inputFileName: String) : DayZero(inputFileName) {
             }
     }
 
-    private fun forEachNumber(calc: (Int, Int) -> Int) = (0 until columnNumber).map { column ->
-        (0 until rowNumber).map { row ->
+    private fun forEachNumber(calc: (Int, Int) -> Int) = (0 until columnNumber).sumOf { column ->
+        (0 until rowNumber).sumOf { row ->
             calc(row, column)
-        }.sumOf { it }
-    }.sumOf { it }
+        }
+    }
 
     private fun isMin(row: Int, column: Int) = inputLines[row][column].let { number ->
         (row == 0 || number < inputLines[row - 1][column]) &&
@@ -49,16 +49,16 @@ class Day09(inputFileName: String) : DayZero(inputFileName) {
                 (column == columnNumber - 1 || number < inputLines[row][column + 1])
     }
 
-    private fun getBasin(coords: Pair<Int, Int>, map: MutableSet<Pair<Int, Int>> = mutableSetOf()): Int {
-        return if (isNotValid(coords, map))
+    private fun getBasin(coords: Pair<Int, Int>, checkedPositions: MutableSet<Pair<Int, Int>> = mutableSetOf()): Int {
+        return if (isNotValid(coords, checkedPositions))
             0
         else
             with(coords) {
                 1 +
-                        getBasin(Pair(first - 1, second), map) +
-                        getBasin(Pair(first + 1, second), map) +
-                        getBasin(Pair(first, second - 1), map) +
-                        getBasin(Pair(first, second + 1), map)
+                        getBasin(Pair(first - 1, second), checkedPositions) +
+                        getBasin(Pair(first + 1, second), checkedPositions) +
+                        getBasin(Pair(first, second - 1), checkedPositions) +
+                        getBasin(Pair(first, second + 1), checkedPositions)
             }
     }
 
