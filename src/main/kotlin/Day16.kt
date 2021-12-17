@@ -41,11 +41,9 @@ class Day16(inputFileName: String) : DayZero(inputFileName) {
         if (coded.subPacket!!.subPackets.isEmpty())
             coded.subPacket!!.subPackets.add(SubPacket(0))
         val values = coded.subPacket!!.subPackets.last().subPackets
-//        val values = coded.subPackets.last().values
         while (go) {
             go = coded.input.binToInt(1) == 1
             values.add(SubPacket(0, values = mutableListOf(coded.input.binToInt(4))))
-//            values.add(coded.input.binToInt(4))
         }
     }
 

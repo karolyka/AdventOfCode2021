@@ -11,8 +11,8 @@ fun main() {
 
             }
             dayClass?.apply {
-                primaryConstructor!!.call("${nr}_example.txt")
-                primaryConstructor!!.call("${nr}.txt")
+                primaryConstructor!!.call("input/${nr}_example.txt")
+                primaryConstructor!!.call("input/${nr}.txt")
                 return
             }
         }
